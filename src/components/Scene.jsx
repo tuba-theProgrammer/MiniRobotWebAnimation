@@ -2,6 +2,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Model } from "./model";
 import { Suspense } from "react";
+import { OrbitControls } from "@react-three/drei";
 import { useProgress,Html, ScrollControls } from "@react-three/drei";
 function Loader(){
  const {progress,active} = useProgress()
@@ -11,14 +12,15 @@ export default function Scene() {
 
   return (
 <>
-<div className="h-full">
-<Canvas gl={{antialias:true}} dpr={[1,1.5]} className="relative h-svh">
-   <directionalLight position={[-5,-5,5]} intensity={4}/>
-   <Suspense  fallback={<Loader/>}>
-   <ScrollControls damping={0.2} pages={2}>
-   <Model/>
-   </ScrollControls>
-   </Suspense>
+<div className="h-[900px] w-full">
+<Canvas gl={{ antialias: true }} dpr={[1, 1.5]} className="relative h-screen">
+
+  <directionalLight position={[-5, -5, 5]} intensity={10} />
+  <Suspense fallback={<Loader />}>
+    <ScrollControls damping={0.2} pages={6}>
+      <Model />
+    </ScrollControls>
+  </Suspense>
 
 </Canvas>
 </div>
